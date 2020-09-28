@@ -13,33 +13,30 @@ DESTROY  = 3
 
 
 def main():
-    star = 0
-    cost = 0
+    cost_list = []
 
-    star_list = []
+    for _ in range(10):
+        star = 0
+        cost = 0
 
-    while star != 17:
-        cost += meso_table[star]
-        star_list.append(star)
+        while star != 17:
+            cost += meso_table[star]
 
-        result = np.random.choice(4, p=prob_table[star])
+            result = np.random.choice(4, p=prob_table[star])
 
-        if result == SUCCESS:
-            star += 1
-        elif result == FAIL:
-            pass
-        elif result == DECREASE:
-            star -= 1
-        elif result == DESTROY:
-            star_list.append('d')
-            star = 12
+            if result == SUCCESS:
+                star += 1
+            elif result == FAIL:
+                pass
+            elif result == DECREASE:
+                star -= 1
+            elif result == DESTROY:
+                star = 12
 
-    print()
-    print(star_list)
-    print()
-    print('{:,} メル'.format(cost))
-    print()
+        cost_list.append(cost)
+        print(cost)
 
+    print('平均: {:,} メル'.format(np.average(cost_list)))
 
 
 if __name__ == '__main__':
