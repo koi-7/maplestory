@@ -14,13 +14,14 @@ DESTROY  = 3
 
 def main():
     cost_list = []
+    destroy_count = 0
 
-    for _ in range(10):
+    for _ in range(600):
         star = 0
         cost = 0
 
         while star != 17:
-            cost += meso_table[star]
+            cost += meso_table[160][star]
 
             result = np.random.choice(4, p=prob_table[star])
 
@@ -31,12 +32,13 @@ def main():
             elif result == DECREASE:
                 star -= 1
             elif result == DESTROY:
+                destroy_count += 1
                 star = 12
 
         cost_list.append(cost)
-        print(cost)
 
-    print('平均: {:,} メル'.format(np.average(cost_list)))
+    print('平均費用: {:,} メル'.format(np.average(cost_list)))
+    print('破壊回数: ' + str(destroy_count) + ' 回')
 
 
 if __name__ == '__main__':
