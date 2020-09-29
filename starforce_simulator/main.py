@@ -16,7 +16,7 @@ def main():
     cost_list = []
     destroy_count = 0
 
-    for _ in range(600):
+    for _ in range(1000):
         star = 0
         cost = 0
 
