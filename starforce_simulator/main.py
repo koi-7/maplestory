@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # coding: utf-8
 
 
@@ -37,10 +37,7 @@ def main():
                 star -= 1
             elif result == DESTROY:
                 destroy_count += 1
-                if star >= 12:
-                    star = 12
-                else:
-                    star = 0
+                star = 12
 
         cost_list.append(cost)
         destroy_list.append(destroy_count)
