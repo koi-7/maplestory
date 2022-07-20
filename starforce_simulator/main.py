@@ -14,14 +14,18 @@ DESTROY  = 3
 
 def main():
     cost_list = []
-    destroy_count = 0
+    destroy_list = []
+
+    star_goal = int(input('目標スター数: '))
+    eq_lev = int(input('装備レベル: '))
 
     for _ in range(1000):
         star = 0
         cost = 0
+        destroy_count = 0
 
-        while star != 17:
-            cost += meso_table[160][star]
+        while star != star_goal:
+            cost += meso_table[eq_lev][star]
 
             result = np.random.choice(4, p=prob_table[star])
 
@@ -33,12 +37,16 @@ def main():
                 star -= 1
             elif result == DESTROY:
                 destroy_count += 1
-                star = 12
+                if star >= 12:
+                    star = 12
+                else:
+                    star = 0
 
         cost_list.append(cost)
+        destroy_list.append(destroy_count)
 
-    print('平均費用: {:,} メル'.format(np.average(cost_list)))
-    print('破壊回数: ' + str(destroy_count) + ' 回')
+    print('平均費用: ' + "{:,}".format(np.average(cost_list)) + ' メル')
+    print('平均破壊回数: ' + "{:,}".format(np.average(destroy_list)) + ' 回')
 
 
 if __name__ == '__main__':
