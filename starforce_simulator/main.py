@@ -3,6 +3,7 @@
 
 
 import numpy as np
+import sys
 from table import meso_table, prob_table
 
 
@@ -16,18 +17,27 @@ def main():
     cost_list = []
     destroy_list = []
 
+    star_start = int(input('開始スター数: '))
     star_goal = int(input('目標スター数: '))
-    eq_lev = int(input('装備レベル: '))
+    eq_lev = int(input('装備レベル（150、160）: '))
+    event1 = int(input('30%オフイベント（0: OFF、1: ON）: '))
+    event2 = int(input('確定イベント（0: OFF、1: ON）: '))
 
     for _ in range(1000):
-        star = 0
+        star = star_start
         cost = 0
         destroy_count = 0
 
         while star != star_goal:
-            cost += meso_table[eq_lev][star]
+            if event1:
+                cost += meso_table[eq_lev][star] * 0.7
+            else:
+                cost += meso_table[eq_lev][star]
 
             result = np.random.choice(4, p=prob_table[star])
+
+            if event2 and (star == 5 or star == 10 or star == 15):
+                result = SUCCESS
 
             if result == SUCCESS:
                 star += 1
@@ -42,6 +52,7 @@ def main():
         cost_list.append(cost)
         destroy_list.append(destroy_count)
 
+    print('------------------------------')
     print('平均費用: ' + "{:,}".format(np.average(cost_list)) + ' メル')
     print('平均破壊回数: ' + "{:,}".format(np.average(destroy_list)) + ' 回')
 
