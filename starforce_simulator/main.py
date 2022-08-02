@@ -3,7 +3,6 @@
 
 
 import numpy as np
-import sys
 from table import meso_table, prob_table
 
 
@@ -54,7 +53,9 @@ def main():
 
     print('------------------------------')
     print('平均費用: ' + "{:,}".format(np.average(cost_list)) + ' メル')
+    print('最大費用: ' + "{:,}".format(max(cost_list)) + ' メル')
     print('平均破壊回数: ' + "{:,}".format(np.average(destroy_list)) + ' 回')
+    print('最大破壊回数: ' + "{:,}".format(max(destroy_list)) + ' 回')
 
 
 if __name__ == '__main__':
