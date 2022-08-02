@@ -18,7 +18,7 @@ def main():
 
     star_start = int(input('開始スター数: '))
     star_goal = int(input('目標スター数: '))
-    eq_lev = int(input('装備レベル（150、160）: '))
+    eq_lev = int(input('装備レベル（130、140、150、160）: '))
     event1 = int(input('30%オフイベント（0: OFF、1: ON）: '))
     event2 = int(input('確定イベント（0: OFF、1: ON）: '))
 
