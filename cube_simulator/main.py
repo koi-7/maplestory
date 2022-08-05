@@ -15,17 +15,22 @@ CUBE_COST = 20000000
 TIER_INCREASE = 0
 TIER_STAY = 1
 
+cube_cost = {1: 20000000, 2: 42500000}
 
-prob_table = [
-    [0.06, 0.94],
-    [0.018, 0.982],
-    [0.003, 0.997]
-]
+prob_table = {
+    1: [[0.06, 0.94],
+        [0.018, 0.982],
+        [0.003, 0.997]],
+    2: [[0.15, 0.85],
+        [0.035, 0.965],
+        [0.01, 0.99]]
+}
 
 def main():
     cost_list = []
     num_of_cube_list = []
 
+    cube = int(input('キューブ（1: ネオミラクルキューブ、2: ブラックキューブ）: '))
     start_tier = int(input('現在の等級（1: レア、2: エピック、3: ユニーク）: '))
 
     for _ in range(1000):
@@ -34,10 +39,10 @@ def main():
         current_tier = start_tier - 1
 
         while current_tier != LEGENDARY:
-            cost += CUBE_COST
+            cost += cube_cost[cube]
             num_of_cube += 1
 
-            result = np.random.choice(2, p=prob_table[current_tier])
+            result = np.random.choice(2, p=prob_table[cube][current_tier])
 
             if result == TIER_INCREASE:
                 current_tier += 1
